@@ -1,0 +1,46 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EFvsADO.Controls"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="EFvsADO.Controls.BusyIdicator"
+             mc:Ignorable="d" 
+            >
+    <UserControl.Resources>
+        <Storyboard x:Key="Storyboard1" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="arc">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Viewbox Height="200" Stretch="Fill" Width="200" >
+        <ed:Arc x:Name="arc" ArcThickness="0" ArcThicknessUnit="Pixel" EndAngle="360" Margin="0" Stretch="None" StartAngle="0" StrokeThickness="50" RenderTransformOrigin="0.5,0.5" Height="200" Width="200">
+            <ed:Arc.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ed:Arc.RenderTransform>
+            <ed:Arc.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF07210D" Offset="0"/>
+                    <GradientStop Color="#FFB3DEBD" Offset="0.77"/>
+                </LinearGradientBrush>
+            </ed:Arc.Stroke>
+            <ed:Arc.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF03326A" Offset="0"/>
+                    <GradientStop Color="#FFF7FBFF" Offset="1"/>
+                </LinearGradientBrush>
+            </ed:Arc.Fill>
+        </ed:Arc>
+    </Viewbox>
+</UserControl>
